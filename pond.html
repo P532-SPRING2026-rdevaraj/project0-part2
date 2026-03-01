@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pond</title>
+    <style>
+
+        body {
+            font-family: Arial;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            border: 1px solid gray;
+            border-radius: 8px;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>The Pond </h2>
+
+<div class="container" id="pondContainer"></div>
+
+<script>
+
+    function loadDucks() {
+        fetch("http://localhost:8080/ducks")
+        .then(response => response.json())
+        .then(data => {
+            displayDucks(data);
+        });
+    }
+
+    function displayDucks(ducks) {
+
+        let container = document.getElementById("pondContainer");
+        container.innerHTML = "";
+
+        ducks.forEach(duck => {
+
+            let card = document.createElement("div");
+            card.className = "card";
+
+            let img = document.createElement("img");
+            img.src = "http://localhost:8080/ducks/" + duck.id + "/image";
+
+            let title = document.createElement("h3");
+            title.textContent = duck.type;
+
+            let idText = document.createElement("p");
+            idText.textContent = "ID: " + duck.id;
+
+            card.appendChild(img);
+            card.appendChild(title);
+            card.appendChild(idText);
+
+            container.appendChild(card);
+        });
+    }
+
+    loadDucks();
+
+</script>
+
+</body>
+</html>
