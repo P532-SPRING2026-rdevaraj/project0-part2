@@ -30,6 +30,6 @@ jobs:
 
       - name: Build and push the image
         run: |
-          docker login --username RohithGowdaD --password ${{secrets.ACCESS_TOKEN}} ghcr.io
-          docker build -t ghcr.io/YOUR_USERNAME/ducks-service:latest --file ducks-service/Dockerfile ducks-service  
-          docker push ghcr.io/RohithGowdaD/ducks-service:latest 
+          echo "${{ secrets.ACCESS_TOKEN }}" | docker login ghcr.io -u rohithgowdad --password-stdin
+          docker build -t ghcr.io/rohithgowdad/ducks-service:latest --file ducks-service/Dockerfile ducks-service  
+          docker push ghcr.io/rohithgowdad/ducks-service:latest 
