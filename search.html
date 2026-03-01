@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Ducks</title>
+</head>
+<body>
+
+<h2>Search Ducks</h2>
+
+<label>Type:</label>
+<input id="searchType" type="text">
+<button onclick="search()">Search</button>
+<br><br>
+<a href="pond.html">View Pond</a>
+
+<ul id="results"></ul>
+
+<script>
+
+    let ducks = [];
+
+    function getAll() {
+        fetch("http://localhost:8080/ducks")
+        .then(response => response.json())
+        .then(data => {
+            ducks = data;
+            display(ducks);
+        });
+    }
+
+    function search() {
+
+        let type = document.getElementById("searchType").value;
+
+        if (ducks.length === 0) {
+            getAll();
+            return;
+        }
+
+        if (type === "") {
+            display(ducks);
+        } else {
+            let filtered = ducks.filter(d =>
+                d.type.toLowerCase().includes(type.toLowerCase())
+            );
+            display(filtered);
+        }
+    }
+
+    function display(list) {
+
+        let results = document.getElementById("results");
+        results.innerHTML = "";
+
+        list.forEach(d => {
+            let li = document.createElement("li");
+            li.textContent = "Id: " + d.id + " | Type: " + d.type;
+            results.appendChild(li);
+        });
+    }
+
+</script>
+
+</body>
+</html>
