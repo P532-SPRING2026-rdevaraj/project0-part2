@@ -1,18 +1,55 @@
 package edu.iu.habahram.ducksservice.model;
 
-public record DuckData(int id, String name, String type) {
+import jakarta.persistence.*;
 
-    public String toLine() {
-        return String.format("%1$s,%2$s,%3$s", id(), name(), type());
+@Entity
+@Table(name = "duck", schema = "ducks")
+public class DuckData {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    private String type;
+
+    // Required by JPA
+    public DuckData() {
     }
 
-    public String toLine(int id) {
-        return String.format("%1$s,%2$s,%3$s", id, name(), type());
+    public DuckData(String name, String type) {
+        this.name = name;
+        this.type = type;
     }
 
-    public static DuckData fromLine(String line) {
-        String[] tokens = line.split(",");
-        return new DuckData(Integer.parseInt(tokens[0]), tokens[1], tokens[2]);
+    public DuckData(Long id, String name, String type) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
