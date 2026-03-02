@@ -39,7 +39,7 @@
 <script>
 
     function loadDucks() {
-        fetch("https://ducksservice-rohith.onrender.com")
+        fetch("https://ducksservice-rohith.onrender.com/ducks")
         .then(response => response.json())
         .then(data => {
             displayDucks(data);

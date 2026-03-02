@@ -20,7 +20,7 @@
     let ducks = [];
 
     function getAll() {
-        fetch("https://ducksservice-rohith.onrender.com")
+        fetch("https://ducksservice-rohith.onrender.com/ducks")
         .then(response => response.json())
         .then(data => {
             ducks = data;
