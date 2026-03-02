@@ -3,7 +3,7 @@ package edu.iu.habahram.ducksservice.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "duck", schema = "ducks")
+@Table(name = "duck")
 public class DuckData {
 
     @Id

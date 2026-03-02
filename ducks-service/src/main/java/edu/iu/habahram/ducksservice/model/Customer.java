@@ -2,7 +2,7 @@ package edu.iu.habahram.ducksservice.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "customer", schema = "ducks")
+@Table(name = "customer")
 public class Customer {
 
     @Id
