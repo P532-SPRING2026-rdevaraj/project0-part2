@@ -14,6 +14,10 @@ public class DuckData {
 
     private String type;
 
+    private byte[] image;
+
+    private String imageContentType;
+
     // Required by JPA
     public DuckData() {
     }
@@ -51,5 +55,21 @@ public class DuckData {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getImageContentType() {
+        return imageContentType;
+    }
+
+    public void setImageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
     }
 }
