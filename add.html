@@ -43,7 +43,7 @@
         })
         .then(response => response.json())
         .then(data => {
-            submitTheImage(duckId);
+            submitTheImage(data);
         })
         .catch(error => {
             console.error("Error:", error);
@@ -59,7 +59,7 @@
         let formData = new FormData();
         formData.append("file", file);
 
-        fetch("http://localhost:8080/ducks/" + duckId + "/image", {
+        fetch("https://ducksservice-rohith.onrender.com/ducks/" + duckId + "/image", {
             method: "POST",
             body: formData
         })
