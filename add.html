@@ -8,6 +8,10 @@
 
 <h2>Add a Duck</h2>
 
+<label>Id:</label>
+<input id="duckId" type="number">
+<br><br>
+
 <label>Type:</label>
 <input id="duckType" type="text">
 <br><br>
@@ -22,9 +26,11 @@
 
     function addTheDuck() {
 
+        let duckId = document.getElementById("duckId").value;
         let duckType = document.getElementById("duckType").value;
 
         let duck = {
+            id: duckId,
             type: duckType
         };
 
@@ -35,12 +41,7 @@
             },
             body: JSON.stringify(duck)
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to save duck: " + response.status);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             submitTheImage(data.id);
         })
@@ -63,9 +64,6 @@
             body: formData
         })
         .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to upload image: " + response.status);
-            }
             alert("Duck and image added successfully!");
         })
         .catch(error => {
