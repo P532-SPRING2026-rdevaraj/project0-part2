@@ -1,5 +1,6 @@
 package edu.iu.habahram.ducksservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +15,7 @@ public class DuckData {
 
     private String type;
 
+    @JsonIgnore
     private byte[] image;
 
     private String imageContentType;
