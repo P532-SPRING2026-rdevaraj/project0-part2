@@ -43,7 +43,8 @@
         })
         .then(response => response.json())
         .then(data => {
-            submitTheImage(data.id);
+            let id = typeof data === 'number' ? data : data.id;
+            submitTheImage(id);
         })
         .catch(error => {
             console.error("Error:", error);
